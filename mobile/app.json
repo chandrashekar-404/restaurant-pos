@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Gourmet POS",
+    "slug": "gourmet-pos",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#070913"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.gourmetpos.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#070913"
+      },
+      "edgeToEdgeEnabled": false
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e0904415-d896-4ee6-919b-ad34d69bc933"
+      }
+    }
+  }
+}
