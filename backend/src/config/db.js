@@ -4,9 +4,10 @@ const Settings = require('../models/Settings');
 
 const connectDB = async () => {
   try {
+    console.log("MONGODB_URI:", process.env.MONGODB_URI);
     const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
-    
+
     // Seed default owner if none exists
     const ownerExists = await User.findOne({ role: 'owner' });
     if (!ownerExists) {
