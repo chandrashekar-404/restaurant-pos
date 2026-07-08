@@ -35,12 +35,17 @@ export default function App() {
   const handleConnect = async () => {
     if (!inputIp.trim()) return;
 
-    // Clean IP format (remove http:// or trailing slashes if entered)
-    let cleanedIp = inputIp.trim().replace(/^https?:\/\//i, '').replace(/\/+$/, '');
+    let target = inputIp.trim();
     
+    // Check if it's a raw hostname/IP (e.g. "192.168.1.15" or "localhost") without protocol/port
+    const isRawHostOrIp = /^[a-zA-Z0-9.-]+$/.test(target) && !target.startsWith('http');
+    if (isRawHostOrIp) {
+      target = `http://${target}:3000`;
+    }
+
     try {
-      await AsyncStorage.setItem('server_ip', cleanedIp);
-      setServerIp(cleanedIp);
+      await AsyncStorage.setItem('server_ip', target);
+      setServerIp(target);
       setIsConfigured(true);
     } catch (err) {
       console.error('Failed to save IP:', err);
@@ -77,19 +82,18 @@ export default function App() {
           <Text style={styles.cardSubtitle}>Terminal Connection Setup</Text>
           
           <Text style={styles.description}>
-            Enter the local IP address of your host computer running the POS server. 
-            Ensure your mobile device is on the same Wi-Fi network.
+            Enter either the local IP address of your POS server or a production website URL (starting with http:// or https://).
           </Text>
 
           <View style={styles.inputGroup}>
-            <Text style={styles.label}>Host IP Address</Text>
+            <Text style={styles.label}>Server IP / URL</Text>
             <TextInput
               style={styles.input}
-              placeholder="e.g. 192.168.1.15"
+              placeholder="e.g. 192.168.1.15 or https://pos.domain.com"
               placeholderTextColor="rgba(255,255,255,0.25)"
               value={inputIp}
               onChangeText={setInputIp}
-              keyboardType="numeric"
+              keyboardType="url"
               autoCapitalize="none"
               autoCorrect={false}
             />
@@ -104,7 +108,7 @@ export default function App() {
   }
 
   // View 2: Full Screen POS web client WebView
-  const targetUrl = `http://${serverIp}:3000`;
+  const targetUrl = serverIp.startsWith('http') ? serverIp : `http://${serverIp}:3000`;
 
   return (
     <SafeAreaView style={styles.webviewContainer}>
