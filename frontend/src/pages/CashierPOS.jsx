@@ -28,6 +28,7 @@ const CashierPOS = () => {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successBill, setSuccessBill] = useState(null);
+  const [activeMobileTab, setActiveMobileTab] = useState('catalogue');
 
   // Load products & settings
   useEffect(() => {
@@ -406,6 +407,31 @@ const CashierPOS = () => {
             </button>
           </div>
         </section>
+
+        {/* Mobile Tab Bar Selector */}
+        <div className="mobile-tab-bar">
+          <button 
+            type="button"
+            className={`mobile-tab-btn ${activeMobileTab === 'catalogue' ? 'active' : ''}`}
+            onClick={() => setActiveMobileTab('catalogue')}
+          >
+            <ShoppingBag size={18} />
+            <span>Menu</span>
+          </button>
+          <button 
+            type="button"
+            className={`mobile-tab-btn ${activeMobileTab === 'cart' ? 'active' : ''}`}
+            onClick={() => setActiveMobileTab('cart')}
+          >
+            <div className="cart-badge-wrapper">
+              <Receipt size={18} />
+              {cart.length > 0 && (
+                <span className="cart-badge">{cart.reduce((sum, item) => sum + item.quantity, 0)}</span>
+              )}
+            </div>
+            <span>Cart</span>
+          </button>
+        </div>
       </main>
 
       {/* Invoice Receipt Modal Overlay */}
@@ -1172,6 +1198,112 @@ const CashierPOS = () => {
 
         .uppercase {
           text-transform: uppercase;
+        }
+
+        /* Mobile Responsive Layout Styles */
+        @media (max-width: 768px) {
+          .pos-main {
+            flex-direction: column;
+            height: calc(100vh - 130px) !important;
+            position: relative;
+          }
+
+          .pos-catalogue {
+            display: ${activeMobileTab === 'catalogue' ? 'flex' : 'none'} !important;
+            width: 100% !important;
+            flex: 1 !important;
+            padding: 16px !important;
+            overflow-y: auto !important;
+          }
+
+          .pos-cart-panel {
+            display: ${activeMobileTab === 'cart' ? 'flex' : 'none'} !important;
+            width: 100% !important;
+            flex: 1 !important;
+            border-left: none !important;
+            background: var(--bg-dark) !important;
+            height: 100% !important;
+          }
+
+          .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+            gap: 12px !important;
+            padding-bottom: 80px !important;
+          }
+
+          .product-card {
+            padding: 12px !important;
+            height: 140px !important;
+          }
+
+          .product-name {
+            font-size: 0.9rem !important;
+            margin: 6px 0 !important;
+          }
+
+          .product-price {
+            font-size: 1rem !important;
+          }
+
+          .mobile-tab-bar {
+            display: flex !important;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 65px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            align-items: center;
+            justify-content: space-around;
+            z-index: 50;
+            padding: 5px 0;
+          }
+
+          .mobile-tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 80px;
+            transition: all var(--transition-fast);
+          }
+
+          .mobile-tab-btn.active {
+            color: var(--primary);
+            font-weight: 600;
+          }
+
+          .cart-badge-wrapper {
+            position: relative;
+          }
+
+          .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -10px;
+            background: var(--danger);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 1px 5px;
+            min-width: 16px;
+            text-align: center;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .mobile-tab-bar {
+            display: none !important;
+          }
         }
       `}</style>
     </div>

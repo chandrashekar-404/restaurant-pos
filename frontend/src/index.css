@@ -294,6 +294,9 @@ body {
   .grid-4, .grid-3, .grid-2 {
     grid-template-columns: 1fr;
   }
+  .split-view {
+    flex-direction: column !important;
+  }
 }
 
 /* Receipt Print Styling */
