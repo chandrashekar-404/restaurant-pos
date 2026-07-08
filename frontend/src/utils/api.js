@@ -2,6 +2,11 @@ import { Capacitor } from '@capacitor/core';
 
 // Retrieve backend API base URL
 export const getApiBaseUrl = () => {
+  // If an environment variable is defined for the API URL, use it
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+
   if (Capacitor.isNativePlatform()) {
     // If user has configured a custom physical IP address for testing, use it
     const customUrl = localStorage.getItem('custom_api_base_url');
