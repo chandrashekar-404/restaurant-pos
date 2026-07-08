@@ -70,10 +70,10 @@ const seedUsers = async () => {
 const seedSettings = async () => {
   console.log('[SEED] Seeding default settings...');
   const settings = await Settings.create({
-    restaurantName: 'The Gourmet Bistro',
-    address: '456 Culinary Boulevard, Foodie Haven',
+    restaurantName: 'Kings Family Restaurant',
+    address: 'NH7 Bypass Road, near HP Petrol Pump, Agalagurki, Chikkaballapur',
     phoneNumber: '+19876543210',
-    receiptFooter: 'Thank you for dining at Gourmet Bistro! Feed your soul.',
+    receiptFooter: 'Thank you for dining at Kings Family Restaurant! Feed your soul.',
     printerSettings: {
       paperWidth: '80mm',
       printerType: 'thermal',

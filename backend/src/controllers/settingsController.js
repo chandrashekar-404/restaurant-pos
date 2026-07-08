@@ -7,10 +7,10 @@ const getSettings = async (req, res, next) => {
   try {
     let settings = await Settings.findOne();
     if (!settings) {
-      // Fallback fallback if seed failed or was deleted
+      // Fallback if seed failed or was deleted
       settings = await Settings.create({
-        restaurantName: 'Restaurant POS',
-        address: '123 Main Street',
+        restaurantName: 'Kings Family Restaurant',
+        address: 'NH7 Bypass Road, near HP Petrol Pump, Agalagurki, Chikkaballapur',
         phoneNumber: '0000000000',
         receiptFooter: 'Thank you for your visit!',
         printerSettings: {

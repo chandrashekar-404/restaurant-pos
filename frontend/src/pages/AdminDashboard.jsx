@@ -494,7 +494,7 @@ const AdminDashboard = () => {
           <div className="brand-badge">
             <ChefHat size={20} />
           </div>
-          <h3>Gourmet POS</h3>
+          <h3>Kings Family Restaurant</h3>
           <span className="badge badge-nonveg">Admin Panel</span>
         </div>
 

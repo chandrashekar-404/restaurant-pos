@@ -24,11 +24,11 @@ const connectDB = async () => {
     }
 
     // Seed default settings if none exists
-    const settingsExist = await Settings.findOne();
-    if (!settingsExist) {
+    let settings = await Settings.findOne();
+    if (!settings) {
       await Settings.create({
-        restaurantName: 'Gourmet Bistro',
-        address: '123 Foodie Street, Culinary Plaza',
+        restaurantName: 'Kings Family Restaurant',
+        address: 'NH7 Bypass Road, near HP Petrol Pump, Agalagurki, Chikkaballapur',
         phoneNumber: '+1234567890',
         receiptFooter: 'Thank you for dining with us! Please visit again.',
         printerSettings: {
@@ -37,6 +37,19 @@ const connectDB = async () => {
         }
       });
       console.log('Default settings seeded successfully');
+    } else {
+      // Automatically update placeholder values to the new restaurant details
+      if (
+        settings.restaurantName === 'Gourmet Bistro' ||
+        settings.restaurantName === 'The Gourmet Bistro' ||
+        settings.restaurantName === 'Restaurant POS' ||
+        settings.address === '123 Foodie Street, Culinary Plaza'
+      ) {
+        settings.restaurantName = 'Kings Family Restaurant';
+        settings.address = 'NH7 Bypass Road, near HP Petrol Pump, Agalagurki, Chikkaballapur';
+        await settings.save();
+        console.log('Settings updated to Kings Family Restaurant');
+      }
     }
 
   } catch (error) {

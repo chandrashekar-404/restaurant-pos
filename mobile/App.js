@@ -73,7 +73,7 @@ export default function App() {
       <SafeAreaView style={styles.configContainer}>
         <StatusBar barStyle="light-content" backgroundColor="#070913" />
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Gourmet POS</Text>
+          <Text style={styles.cardTitle}>Kings Family Restaurant</Text>
           <Text style={styles.cardSubtitle}>Terminal Connection Setup</Text>
           
           <Text style={styles.description}>

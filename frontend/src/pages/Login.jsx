@@ -59,7 +59,7 @@ const Login = () => {
           <div className="logo-badge">
             <ChefHat size={32} className="logo-icon" />
           </div>
-          <h1>Gourmet POS</h1>
+          <h1>Kings Family Restaurant</h1>
           <p>Restaurant Billing & Inventory Control</p>
         </div>
 

@@ -161,7 +161,7 @@ const CashierPOS = () => {
             <ChefHat size={22} />
           </div>
           <div>
-            <h2>{settings?.restaurantName || 'Gourmet Bistro'}</h2>
+            <h2>{settings?.restaurantName || 'Kings Family Restaurant'}</h2>
             <p className="subtitle">Billing Desk Terminal</p>
           </div>
         </div>
@@ -414,8 +414,8 @@ const CashierPOS = () => {
           <div className="receipt-modal glass-card animate-scale-in">
             <div className="receipt-header">
               <ChefHat size={28} className="receipt-logo" />
-              <h3>{settings?.restaurantName || 'Gourmet Bistro'}</h3>
-              <p className="receipt-detail"><MapPin size={12} /> {settings?.address || 'Restaurant Address'}</p>
+              <h3>{settings?.restaurantName || 'Kings Family Restaurant'}</h3>
+              <p className="receipt-detail"><MapPin size={12} /> {settings?.address || 'NH7 Bypass Road, near HP Petrol Pump, Agalagurki, Chikkaballapur'}</p>
               <p className="receipt-detail"><Phone size={12} /> {settings?.phoneNumber || 'Phone Number'}</p>
               <div className="divider-dots"></div>
             </div>
